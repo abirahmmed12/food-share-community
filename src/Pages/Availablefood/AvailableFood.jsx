@@ -8,7 +8,6 @@ const AvailableFood = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [filteredAvailableFoods, setFilteredAvailableFoods] = useState([]);
     const [sortOrder, setSortOrder] = useState('asc'); // Default sorting order
-    const [searchClicked, setSearchClicked] = useState(false); // Track if the search button is clicked
     const availablefoods = useLoaderData();
 
     useEffect(() => {
@@ -33,10 +32,10 @@ const AvailableFood = () => {
         }
 
         setFilteredAvailableFoods(sortedFoods);
-    }, [availablefoods, searchQuery, sortOrder, searchClicked]);
+    }, [availablefoods, searchQuery, sortOrder]);
 
-    const handleSearch = () => {
-        setSearchClicked(true); // Set the search button clicked
+    const handleSearch = (e) => {
+        setSearchQuery(e.target.value);
     };
 
     const toggleSortOrder = () => {
@@ -53,38 +52,30 @@ const AvailableFood = () => {
                     </Flex>
                 </div>
             ) : (
-                <div>
-                    <div className="flex justify-center">
-                        <div>
-                            <input
+                <div className=''>
+                    <div className="">
+                        <div className='flex justify-center  '>
+                            <input 
                                 type="text"
                                 placeholder="Search Your Desired Food"
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="input input-bordered input-success w-96 max-w-xs"
+                                onChange={handleSearch}
+                                className="input input-bordered input-success w-[600px] "
                             />
+                             </div>
                         </div>
-                       
-                        <Button className='btn  w-40  bg-[#446c2c] text-white ' onClick={handleSearch}>Search</Button>
-                    </div>
-                   <div> <Button className='bg-black text-white' onClick={toggleSortOrder}>
+                        <Button className='bg-black text-white' onClick={toggleSortOrder}>
                             Sort by Expire Date ({sortOrder === 'asc' ? 'Ascending' : 'Descending'})
-                        </Button></div>
+                        </Button>
+                   
 
                     <div className="grid grid-cols-2 gap-5">
-                        {searchClicked
-                            ? filteredAvailableFoods.map((availabefood) => (
-                                <SingleAvaiable
-                                    key={availabefood._id}
-                                    availabefood={availabefood}
-                                ></SingleAvaiable>
-                            ))
-                            : availablefoods.map((availabefood) => (
-                                <SingleAvaiable
-                                    key={availabefood._id}
-                                    availabefood={availabefood}
-                                ></SingleAvaiable>
-                            ))}
+                        {filteredAvailableFoods.map((availabefood) => (
+                            <SingleAvaiable
+                                key={availabefood._id}
+                                availabefood={availabefood}
+                            ></SingleAvaiable>
+                        ))}
                     </div>
                 </div>
             )}
