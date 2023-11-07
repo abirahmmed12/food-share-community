@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Flex, Spin } from 'antd';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../Authprovider/Authprovider';
 
 const Detailsfood = () => {
+  const {user}=useContext(AuthContext)
     const handlerequest = e =>{
         e.preventDefault()
         const form = e.target
@@ -21,20 +24,39 @@ const Detailsfood = () => {
         const request ={foodName,foodImage,email,id,currenttime,expiredDateTime,location,donatorimage,donatorname,aditional,donationmoney}
         console.log(request)
         fetch('http://localhost:5000/request', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json', // Use 'Content-Type' instead of 'content-type'
-  },
-  body: JSON.stringify(request),
-})
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
-
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(request),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+          console.log(data);
+       
+  
+          // Display a success toast message with SweetAlert2
+          Swal.fire({
+            title: "Custom animation with Animate.css",
+            showClass: {
+              popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `
+            },
+            hideClass: {
+              popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `
+            }
+          });
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+      });
     } 
       
     const showdate = new Date()
@@ -131,7 +153,7 @@ const Detailsfood = () => {
                 className="input input-bordered w-full"
                 required
               
-                value={detailfood.donatorEmail}
+                value={user?.email}
                 readOnly
                
               />
@@ -199,8 +221,7 @@ const Detailsfood = () => {
               placeholder="Donator Image"
               value={detailfood.donatorImage}
               className="input input-bordered w-full"
-              required
-            
+              
               readOnly
             />
           </div>
@@ -219,19 +240,7 @@ const Detailsfood = () => {
             />
           </div>
           <div className='flex'>
-          <div className="w-full px-3 mb-3">
-            <label className="label">Donator Email</label>
-            <input
-              type="email"
-              name="donatorEmail"
-              placeholder="Donator Email"
-              className="input input-bordered w-full"
-              required
-            
-              value={detailfood.donatorName}
-              readOnly
-            />
-          </div>
+        
           <div className="w-full px-3 mb-3">
             <label className="label">Aditional Note</label>
             <input
@@ -253,7 +262,7 @@ const Detailsfood = () => {
               name="donationmoney"
               placeholder="Donator Money"
               className="input input-bordered w-full"
-              required
+             
             
              
              

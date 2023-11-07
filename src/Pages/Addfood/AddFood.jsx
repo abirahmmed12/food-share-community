@@ -1,6 +1,7 @@
 import  {  useContext, useState,  } from 'react';
  // Update with your actual AuthContext path
 import { AuthContext } from '../../Authprovider/Authprovider';
+import Swal from 'sweetalert2';
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -38,7 +39,13 @@ const AddFood = () => {
         .then((data) => {
           console.log(data);
           if(data.insertedId){
-            alert('ffggh')
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500
+            });
           }
         })
         .catch((error) => {

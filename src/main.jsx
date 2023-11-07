@@ -17,6 +17,7 @@ import Login from './Pages/Login';
 import Registration from './Pages/Registration';
 import FeatureFood from './Pages/Home/FeatureFood';
 import Detailsfood from './Pages/Home/Detailsfood';
+import Foodrequest from './Pages/Foodrequest';
 
 
 
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login></Login>
+      },
+      {
+        path: '/request',
+        element: <Foodrequest></Foodrequest>,
       },
       {
         path: '/register',

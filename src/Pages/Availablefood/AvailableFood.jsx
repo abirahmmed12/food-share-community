@@ -60,16 +60,16 @@ const AvailableFood = () => {
                                 placeholder="Search Your Desired Food"
                                 value={searchQuery}
                                 onChange={handleSearch}
-                                className="input input-bordered input-success w-[600px] "
+                                className="input input-bordered input-success lg:w-[600px] "
                             />
                              </div>
                         </div>
-                        <Button className='bg-black text-white' onClick={toggleSortOrder}>
+                        <Button className='bg-black text-white ' onClick={toggleSortOrder}>
                             Sort by Expire Date ({sortOrder === 'asc' ? 'Ascending' : 'Descending'})
                         </Button>
                    
 
-                    <div className="grid grid-cols-2 gap-5">
+                    <div className="lg:grid grid-cols-2 gap-5">
                         {filteredAvailableFoods.map((availabefood) => (
                             <SingleAvaiable
                                 key={availabefood._id}

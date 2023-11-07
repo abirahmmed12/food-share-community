@@ -15,7 +15,7 @@ const SingleFeature = ({ singlefood }) => {
 
   return (
     <div>
-      <div className="m-5 w-[600px]">
+      <div className="m-5 lg:w-[600px]">
       <div className="group mx-2 mt-10 grid max-w-screen-lg grid-cols-1 space-x-8 overflow-hidden rounded-lg border text-gray-700 shadow transition hover:shadow-lg sm:mx-auto sm:grid-cols-5">
         <a
           href="#"

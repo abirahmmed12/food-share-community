@@ -14,7 +14,7 @@ const FeatureFood = () => {
   });
   const topSixFood = featurefood.slice(0, 6);
     return (
-        <div className="grid grid-cols-2 gap-5">
+        <div className="lg:grid grid-cols-2 gap-5">
         {topSixFood.map((singlefood) => (
           <SingleFeature key={singlefood.foodName} singlefood={singlefood} />
         ))}
