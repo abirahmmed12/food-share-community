@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import Singlemanage from './Singlemanage';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const Managefood = () => {
@@ -23,7 +24,7 @@ const Managefood = () => {
       });
   }, [user]);
   const handleDelete = (id) => {
-    const proceed = window.confirm('Are you sure you want to delete this item?');
+    const proceed = Swal.fire("Item Deleted");
     if (proceed) {
       // Use the _id to construct the URL for the specific item to delete
       fetch(`https://the-food-share-server.vercel.app/addfood/${id}`, {
@@ -33,7 +34,7 @@ const Managefood = () => {
         .then((data) => {
           console.log(data);
           if (data.deletedCount > 0) {
-            alert('Deleted');
+            
             const remaining = manage.filter((mange) => mange._id !== id); // Correct the variable name here
             setManage(remaining);
           }

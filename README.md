@@ -10,4 +10,4 @@ Food Request and Management: Develop a system where users can request food from 
 
 
 
-Live Link : https://654bc4fb807a731283e5d77a--singular-druid-b6db7d.netlify.app/
+Live Link : https://654bc9b7dbf58721d872732f--singular-druid-b6db7d.netlify.app/

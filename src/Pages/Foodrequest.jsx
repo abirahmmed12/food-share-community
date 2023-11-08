@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import SingleRequest from "./SingleRequest";
 import { Flex, Spin } from "antd";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Foodrequest = () => {
     const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const Foodrequest = () => {
     }, [user]);
   
     const handleDelete = (id) => {
-      const proceed = window.confirm('Are you sure you want to delete this item?');
+      const proceed =  Swal.fire("Item Deleted");
   
       if (proceed) {
       
@@ -40,7 +41,7 @@ const Foodrequest = () => {
             console.log(data);
   
             if (data.deletedCount > 0) {
-              alert('Deleted');
+             
               const remaining = requests.filter((request) => request._id !== id);
               setRequests(remaining);
             }
