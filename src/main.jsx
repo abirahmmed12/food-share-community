@@ -20,9 +20,11 @@ import FeatureFood from './Pages/Home/FeatureFood';
 import Detailsfood from './Pages/Home/Detailsfood';
 import Foodrequest from './Pages/Foodrequest';
 import Managefood from './Managefood/Managefood';
-import AuthProvider from './Authprovider/Authprovider';
+
 import Singlemanage from './Managefood/Singlemanage';
 import Dynamicmanage from './Managefood/Dynamicmanage';
+import AuthProvider from './AuthProvider/AuthProvider';
+import PrivateRout from './PrivateRout';
 
 
 
@@ -32,25 +34,26 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
+    errorElement:<Errorpage></Errorpage>,
     children: [
       {
         path: '/',
         element:<Home></Home>,
-        loader: ()=> fetch('http://localhost:5000/addfood')
+        loader: ()=> fetch('https://the-food-share-server.vercel.app/addfood')
       },
       {
         path: '/availablefoods',
         element:<AvailableFood></AvailableFood>,
-        loader:()=> fetch('http://localhost:5000/addfood')
+        loader:()=> fetch('https://the-food-share-server.vercel.app/addfood')
       },
       {
         path: '/addfood',
-        element:<AddFood></AddFood>,
+        element:<PrivateRout><AddFood></AddFood></PrivateRout>,
       },
       {
         path: '/featurefood',
         element:<FeatureFood></FeatureFood>,
-        loader: ()=> fetch('http://localhost:5000/addfood')
+        loader: ()=> fetch('https://the-food-share-server.vercel.app/addfood')
     
       },
       {
@@ -59,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/request',
-        element: <Foodrequest></Foodrequest>,
+        element: <PrivateRout><Foodrequest></Foodrequest></PrivateRout>,
       },
       {
         path: '/register',
@@ -74,7 +77,7 @@ const router = createBrowserRouter([
       
       {
         path: '/single',
-        element: <Singlemanage></Singlemanage>,
+        element: <PrivateRout><Singlemanage></Singlemanage></PrivateRout>,
         // loader: ({params})=> fetch(`http://localhost:5000/managefood/${params.id}`)
 
        
@@ -82,16 +85,16 @@ const router = createBrowserRouter([
       },
       {
         path: '/manage/:id',
-        element:<Dynamicmanage></Dynamicmanage>,
-        loader: ({params})=> fetch(`http://localhost:5000/addfood/${params.id}`)
+        element:<PrivateRout><Dynamicmanage></Dynamicmanage></PrivateRout>,
+        loader: ({params})=> fetch(`https://the-food-share-server.vercel.app/addfood/${params.id}`)
 
        
         
       },
       {
         path: '/fooddetails/:id',
-        element: <Detailsfood></Detailsfood>,
-        loader: ({params})=> fetch(`http://localhost:5000/addfood/${params.id}`)
+        element: <PrivateRout><Detailsfood></Detailsfood></PrivateRout>,
+        loader: ({params})=> fetch(`https://the-food-share-server.vercel.app/addfood/${params.id}`)
       },
     ],
   },

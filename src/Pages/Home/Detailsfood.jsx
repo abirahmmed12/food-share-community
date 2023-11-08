@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Flex, Spin } from 'antd';
 import Swal from 'sweetalert2';
-import { AuthContext } from '../../Authprovider/Authprovider';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+
 
 const Detailsfood = () => {
   const {user}=useContext(AuthContext)
@@ -23,7 +24,7 @@ const Detailsfood = () => {
 
         const request ={foodName,foodImage,email,id,currenttime,expiredDateTime,location,donatorimage,donatorname,aditional,donationmoney}
         console.log(request)
-        fetch('http://localhost:5000/request', {
+        fetch('https://the-food-share-server.vercel.app/request', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',

@@ -1,7 +1,8 @@
 import  {  useContext, useState,  } from 'react';
  // Update with your actual AuthContext path
-import { AuthContext } from '../../Authprovider/Authprovider';
+
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
@@ -28,7 +29,7 @@ const AddFood = () => {
     e.preventDefault();
     // Handle form submission here (e.g., sending data to an API).
     console.log(foodData);
-    fetch('http://localhost:5000/addfood', {
+    fetch('https://the-food-share-server.vercel.app/addfood', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Correct the typo here

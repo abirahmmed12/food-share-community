@@ -2,7 +2,8 @@ import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, getAuth, signInWithPopup, updateProfile } from "firebase/auth";
 import Swal from 'sweetalert2';
-import { AuthContext } from '../Authprovider/Authprovider';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+
 
 const Registration = () => {
     const { createuser } = useContext(AuthContext);

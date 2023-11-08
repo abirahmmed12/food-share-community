@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { AuthContext } from "../Authprovider/Authprovider";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -13,12 +14,12 @@ const Navbar = () => {
   const Navlinks = (
     <>
        <li className="text-white font-bold"><NavLink to={'/'}>Home</NavLink></li>
-       {user && (
+      
       <li className="text-white font-bold" ><NavLink to={'/addfood'}>Add Food</NavLink></li>
-       )}
-       {user && (
+      
+       
       <li className="text-white font-bold"><NavLink to={'/availablefoods'}>Available Foods</NavLink></li>
-       )}
+     
        {user && (
       <li className="text-white font-bold"><NavLink to={'/request'}>My Food Request</NavLink></li>
        )}

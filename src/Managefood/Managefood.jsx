@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../Authprovider/Authprovider';
+
 import Singlemanage from './Singlemanage';
+import { AuthContext } from '../AuthProvider/AuthProvider';
 
 
 const Managefood = () => {
@@ -10,7 +11,7 @@ const Managefood = () => {
 
   useEffect(() => {
     // Fetch a list of food items based on the user's email
-    fetch(`http://localhost:5000/addfood?email=${user?.email}`)
+    fetch(`https://the-food-share-server.vercel.app/addfood?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setManage(data);
@@ -25,7 +26,7 @@ const Managefood = () => {
     const proceed = window.confirm('Are you sure you want to delete this item?');
     if (proceed) {
       // Use the _id to construct the URL for the specific item to delete
-      fetch(`http://localhost:5000/addfood/${id}`, {
+      fetch(`https://the-food-share-server.vercel.app/addfood/${id}`, {
         method: 'DELETE',
       })
         .then((res) => res.json())

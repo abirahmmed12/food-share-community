@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Authprovider/Authprovider";
+
 import SingleRequest from "./SingleRequest";
 import { Flex, Spin } from "antd";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Foodrequest = () => {
     const { user } = useContext(AuthContext);
@@ -10,39 +11,44 @@ const Foodrequest = () => {
   
 
     useEffect(() => {
-        if(!user) return;
-        const url = `http://localhost:5000/request?email=${user?.email}`;
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => {
-                setRequests(data);
-                setLoading(false); // Data has loaded
-            })
-            .catch((error) => {
-                console.error("Error fetching data:", error);
-                setLoading(false); // An error occurred
-            });
+      if (!user) return;
+  
+      const url = `https://the-food-share-server.vercel.app/request?email=${user.email}`;
+  
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          setRequests(data);
+          setLoading(false); // Data has loaded
+        })
+        .catch((error) => {
+          console.error('Error fetching data:', error);
+          setLoading(false); // An error occurred
+        });
     }, [user]);
+  
     const handleDelete = (id) => {
-        const proceed = window.confirm('Are you sure you want to delete this item?');
-        if (proceed) {
-          // Use the _id to construct the URL for the specific item to delete
-          fetch(`http://localhost:5000/request/${id}`, {
-            method: 'DELETE',
+      const proceed = window.confirm('Are you sure you want to delete this item?');
+  
+      if (proceed) {
+      
+        fetch(`https://the-food-share-server.vercel.app/request/${id}`, {
+          method: 'DELETE',
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+  
+            if (data.deletedCount > 0) {
+              alert('Deleted');
+              const remaining = requests.filter((request) => request._id !== id);
+              setRequests(remaining);
+            }
           })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              if (data.deletedCount > 0) {
-                alert('Deleted');
-                const remaining = requests.filter((request) => request._id !== id); // Correct the variable name here
-               setRequests(remaining);
-              }
-            })
-            .catch((error) => {
-              console.error('Error deleting item:', error);
-              // Handle errors
-            });
+          .catch((error) => {
+            console.error('Error deleting item:', error);
+          
+          });
         }
       };
       

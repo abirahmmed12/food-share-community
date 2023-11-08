@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../Authprovider/Authprovider";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+
 
 const Dynamicmanage = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const Dynamicmanage = () => {
 
   useEffect(() => {
     if (!user) return;
-    const url = `http://localhost:5000/requested?donatorname=${user?.displayName}`;
+    const url = `https://the-food-share-server.vercel.app/requested?donatorname=${user?.displayName}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
