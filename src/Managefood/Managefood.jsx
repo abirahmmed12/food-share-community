@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Authprovider/Authprovider';
 import Singlemanage from './Singlemanage';
-import { Link } from 'react-router-dom';
+
 
 const Managefood = () => {
   const { user } = useContext(AuthContext);
@@ -21,6 +21,30 @@ const Managefood = () => {
         setLoading(false);
       });
   }, [user]);
+  const handleDelete = (id) => {
+    const proceed = window.confirm('Are you sure you want to delete this item?');
+    if (proceed) {
+      // Use the _id to construct the URL for the specific item to delete
+      fetch(`http://localhost:5000/addfood/${id}`, {
+        method: 'DELETE',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount > 0) {
+            alert('Deleted');
+            const remaining = manage.filter((mange) => mange._id !== id); // Correct the variable name here
+            setManage(remaining);
+          }
+        })
+        .catch((error) => {
+          console.error('Error deleting item:', error);
+          // Handle errors
+        });
+    }
+  };
+  
+ 
 
   if (loading) {
     return <p>Loading...</p>;
@@ -28,13 +52,9 @@ const Managefood = () => {
 
   return (
     <div>
-      {
-        manage?.map((mange, i) => (
-          <Link to={`/fooddetails/${mange._id}`} key={i}>
-            <Singlemanage mange={mange} />
-          </Link>
-        ))
-      }
+    {
+      manage.map(manage=><Singlemanage key={manage._id} manage={manage} handleDelete={handleDelete} ></Singlemanage>)
+    }
     </div>
   );
 };

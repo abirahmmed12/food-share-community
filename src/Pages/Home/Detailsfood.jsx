@@ -145,7 +145,7 @@ const Detailsfood = () => {
           </div>
            <div className='flex'>
            <div className="w-full px-3 mb-3">
-              <label className="label">Donator Email</label>
+              <label className="label"> Email</label>
               <input
                 type="email"
                 name="email"
@@ -159,14 +159,15 @@ const Detailsfood = () => {
               />
             </div>
             <div className="w-full px-3 mb-3">
-              <label className="label">Food Id</label>
+              <label className="label">Name</label>
               <input
                 type="text"
                 name="id"
                 placeholder="Food Id"
                 className="input input-bordered w-full"
                 required
-                value={detailfood._id}
+                value={user?.displayName
+                  }
                 readOnly
                 
                
@@ -214,12 +215,12 @@ const Detailsfood = () => {
               readOnly
             />
           </div>  <div className="w-full px-3 mb-3">
-            <label className="label">Donator Image</label>
+            <label className="label"> Image</label>
             <input
               type="text"
               name="donatorimage"
               placeholder="Donator Image"
-              value={detailfood.donatorImage}
+              value={user?.photoURL}
               className="input input-bordered w-full"
               
               readOnly

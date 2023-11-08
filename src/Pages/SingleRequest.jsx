@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SingleRequest = ({ request }) => {
+const SingleRequest = ({ request,handleDelete }) => {
     const {
         _id,
         foodName,
@@ -40,7 +40,7 @@ const SingleRequest = ({ request }) => {
                 <div className="mb-3"></div>
                 <div className="flex space-x-2">
                     <button className="w-full rounded-lg border-2 bg-white px-4 py-2 font-medium text-gray-500">Available</button>
-                    <button className="w-full rounded-lg border-2 border-transparent bg-red-600 px-4 py-2 font-medium text-white">Cencel Request</button>
+                    <button onClick={()=>handleDelete(_id)} className="w-full rounded-lg border-2 border-transparent bg-red-600 px-4 py-2 font-medium text-white">Cencel Request</button>
                 </div>
             </div>
         </div>

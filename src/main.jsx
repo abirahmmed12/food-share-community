@@ -22,6 +22,7 @@ import Foodrequest from './Pages/Foodrequest';
 import Managefood from './Managefood/Managefood';
 import AuthProvider from './Authprovider/Authprovider';
 import Singlemanage from './Managefood/Singlemanage';
+import Dynamicmanage from './Managefood/Dynamicmanage';
 
 
 
@@ -72,9 +73,17 @@ const router = createBrowserRouter([
       },
       
       {
-        path: '/single-food/:id',
+        path: '/single',
         element: <Singlemanage></Singlemanage>,
-        loader: ({params})=> fetch(`http://localhost:5000/managefood/${params.id}`)
+        // loader: ({params})=> fetch(`http://localhost:5000/managefood/${params.id}`)
+
+       
+        
+      },
+      {
+        path: '/manage/:id',
+        element:<Dynamicmanage></Dynamicmanage>,
+        loader: ({params})=> fetch(`http://localhost:5000/addfood/${params.id}`)
 
        
         
