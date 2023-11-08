@@ -25,6 +25,7 @@ import Singlemanage from './Managefood/Singlemanage';
 import Dynamicmanage from './Managefood/Dynamicmanage';
 import AuthProvider from './AuthProvider/AuthProvider';
 import PrivateRout from './PrivateRout';
+import Errorpage from './Errorpage';
 
 
 
