@@ -7,9 +7,11 @@ const Foodrequest = () => {
     const { user } = useContext(AuthContext);
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
-    const url = `http://localhost:5000/request?email=${user?.email}`;
+  
 
     useEffect(() => {
+        if(!user) return;
+        const url = `http://localhost:5000/request?email=${user?.email}`;
         fetch(url)
             .then((res) => res.json())
             .then((data) => {
@@ -20,7 +22,7 @@ const Foodrequest = () => {
                 console.error("Error fetching data:", error);
                 setLoading(false); // An error occurred
             });
-    }, []);
+    }, [user]);
 
     return (
         <div className="lg:grid grid-cols-2 gap-4">
