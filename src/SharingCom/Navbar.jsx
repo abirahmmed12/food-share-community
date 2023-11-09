@@ -14,8 +14,8 @@ const Navbar = () => {
   const Navlinks = (
     <>
        <li className="text-white font-bold"><NavLink to={'/'}>Home</NavLink></li>
-      
-      <li className="text-white font-bold" ><NavLink to={'/addfood'}>Add Food</NavLink></li>
+      {user && ( <li className="text-white font-bold" ><NavLink to={'/addfood'}>Add Food</NavLink></li>)}
+     
       
        
       <li className="text-white font-bold"><NavLink to={'/availablefoods'}>Available Foods</NavLink></li>

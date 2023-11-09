@@ -23,8 +23,9 @@ const AddFood = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFoodData({ ...foodData, [name]: value });
+   
   };
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here (e.g., sending data to an API).
@@ -41,12 +42,23 @@ const AddFood = () => {
           console.log(data);
           if(data.insertedId){
             Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Your work has been saved",
-              showConfirmButton: false,
-              timer: 1500
+              title: "Your Request has been sent",
+              showClass: {
+                popup: `
+                  animate__animated
+                  animate__slideInDown
+                  animate__faster
+                `
+              },
+              hideClass: {
+                popup: `
+                  animate__animated
+                  animate__slideOutUp
+                  animate__faster
+                `
+              }
             });
+            
           }
         })
         .catch((error) => {

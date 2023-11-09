@@ -38,18 +38,18 @@ const Detailsfood = () => {
   
           // Display a success toast message with SweetAlert2
           Swal.fire({
-            title: "Custom animation with Animate.css",
+            title: "Your Request has been sent",
             showClass: {
               popup: `
                 animate__animated
-                animate__fadeInUp
+                animate__slideInDown
                 animate__faster
               `
             },
             hideClass: {
               popup: `
                 animate__animated
-                animate__fadeOutDown
+                animate__slideOutUp
                 animate__faster
               `
             }
