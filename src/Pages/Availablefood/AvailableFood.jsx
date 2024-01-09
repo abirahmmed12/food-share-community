@@ -17,7 +17,7 @@ const AvailableFood = () => {
         }, 2000); // Adjust the delay time as needed
     }, []);
 
-    // Update the filtered list of available foods when the searchQuery or sort order changes
+   
     useEffect(() => {
         const filteredFoods = availablefoods
             .filter((food) =>
